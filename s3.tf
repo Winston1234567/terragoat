@@ -4,7 +4,7 @@ resource "aws_s3_bucket" "data" {
   # bucket does not have access logs
   # bucket does not have versioning
   bucket        = "${local.resource_prefix.value}-data"
-  acl           = "private"
+  acl           = "public-read"
   force_destroy = true
   tags = {
     Name                 = "${local.resource_prefix.value}-data"
@@ -22,6 +22,19 @@ resource "aws_s3_bucket" "data" {
     enabled = "${var.versioning_enabled}"
   }
 }
+
+
+resource "aws_s3_bucket" "data_log_bucket" {
+  bucket = "data-log-bucket"
+}
+
+resource "aws_s3_bucket_logging" "data" {
+  bucket = aws_s3_bucket.data.id
+
+  target_bucket = aws_s3_bucket.data_log_bucket.id
+  target_prefix = "log/"
+}
+
 
 resource "aws_s3_bucket_object" "data_object" {
   bucket = aws_s3_bucket.data.id
@@ -86,6 +99,18 @@ resource "aws_s3_bucket" "operations" {
   }
 
 }
+
+
+resource "aws_s3_bucket_server_side_encryption_configuration" "operations" {
+  bucket = aws_s3_bucket.operations.bucket
+
+  rule {
+    apply_server_side_encryption_by_default {
+      sse_algorithm     = "AES256"
+    }
+  }
+}
+
 
 resource "aws_s3_bucket" "data_science" {
   # bucket is not encrypted
