@@ -1,4 +1,4 @@
-resource "aws_elasticsearch_domain" "monitoring-framework" {
+a;lkdjfa;ldkresource "aws_elasticsearch_domain" "monitoring-framework" {
   domain_name           = "tg-${var.environment}-es"
   elasticsearch_version = "2.3"
 
