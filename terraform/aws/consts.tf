@@ -42,7 +42,7 @@ variable "password" {
   default     = "Aa1234321Bb"
 }
 
-variable "neptune-dbname" {
+variable "neptundfaea
   type        = "string"
   description = "Name of the Neptune graph database"
   default     = "neptunedb1"

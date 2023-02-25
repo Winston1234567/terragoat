@@ -1,4 +1,4 @@
-resource "aws_s3_bucket" "data" {
+NEW RESOURCE CHANGE 0225raaesource "aws_s3_bucket" "data" {
   # bucket is public
   # bucket is not encrypted
   # bucket does not have access logs
@@ -22,17 +22,6 @@ resource "aws_s3_bucket" "data" {
   }
 }
 
-
-resource "aws_s3_bucket" "data_log_bucket" {
-  bucket = "data-log-bucket"
-}
-
-resource "aws_s3_bucket_logging" "data" {
-  bucket = aws_s3_bucket.data.id
-
-  target_bucket = aws_s3_bucket.data_log_bucket.id
-  target_prefix = "log/"
-}
 
 
 
