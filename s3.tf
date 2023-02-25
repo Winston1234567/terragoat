@@ -1,4 +1,4 @@
-raaesource "aws_s3_bucket" "data" {
+NEW RESOURCE CHANGE 0225raaesource "aws_s3_bucket" "data" {
   # bucket is public
   # bucket is not encrypted
   # bucket does not have access logs
